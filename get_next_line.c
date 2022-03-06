@@ -81,7 +81,7 @@ static char	*is_line(char **storage, char **temp)
 	*temp = ft_strdup(*storage);
 	free(*storage);
 	*storage = extract_word(*temp, index + 1, ft_strlen(*temp));
-	p = extract_word(*temp, 0, index);
+	p = extract_word(*temp, 0, index - 1);
 	free(*temp);
 	return (p);
 }

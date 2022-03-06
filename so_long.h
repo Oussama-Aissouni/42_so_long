@@ -21,22 +21,38 @@
 # include <fcntl.h>
 # include <mlx.h>
 
-typedef struct s_vars
+typedef struct s_player
 {
 	void	*img;
-	int		img_width;
-	int		img_height;
 	int		pos_x;
 	int		pos_y;
-	bool	display;
-}	t_vars;
+	int		pos_i;
+	int		pos_j;
+}	t_player;
+
+typedef struct s_texture
+{
+	void	*img;
+}	t_texture;
 
 typedef struct s_window
 {
-	void	*mlx;
-	void	*win;
-	t_vars	t[2];
+	int			coins_count;
+	void		*mlx;
+	void		*win;
+	t_player	p;
+	t_texture	c;
+	t_texture	g;
+	t_texture	w;
+	t_texture	e;
 }	t_window;
+
+typedef struct s_components
+{
+	int	c;
+	int	e;
+	int	p;
+}	t_components;
 
 int		key_hooks(int keycode, t_window *vars);
 size_t	ft_strlen(char	*s);
@@ -45,5 +61,11 @@ char	*extract_word(char *s, int from, int to);
 char	*ft_strdup(char *s1);
 char	*get_next_line(int fd);
 void	my_free(char **ptr);
-
+size_t	ft_strlen2(char	**s);
+int		lines_counter(const char *path);
+char	**map_lines(const char *path);
+int		check_top_bot(char *line);
+int		check_mid_border(char *line);
+void	parser(char **map, int width, int height, t_window asd);
+int		map_checker(const char *path, t_window *asd);
 #endif

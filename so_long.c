@@ -12,29 +12,26 @@
 
 #include "so_long.h"
 
-int	main(void)
+int	main(int argc, char *argv[])
 {
-	t_window	vars;
-	int			x;
-	int			y;
+	char	**map;
+	int		width;
+	int		height;
+	t_window asd;
 
-	vars.t[0].pos_x = 0;
-	vars.t[0].pos_y = 0;
-	vars.t[0].display = true;
-	vars.t[1].display = true;
-	vars.t[1].pos_x = 1000;
-	vars.t[1].pos_y = 900;
-	vars.mlx = mlx_init();
-	vars.win = mlx_new_window(vars.mlx, 1920, 1080, "So_long");
-	mlx_key_hook(vars.win, key_hooks, &vars);
-	vars.t[0].img = mlx_xpm_file_to_image(vars.mlx,
-			"./images/coin.xpm", &x, &y);
-	vars.t[1].img = mlx_xpm_file_to_image(vars.mlx,
-			"./images/wall.xpm", &x, &y);
-	mlx_put_image_to_window(vars.mlx, vars.win, vars.t[0].img,
-		vars.t[0].pos_x, vars.t[0].pos_y);
-	mlx_put_image_to_window(vars.mlx, vars.win, vars.t[1].img,
-		vars.t[1].pos_x, vars.t[1].pos_y);
-	mlx_loop(vars.mlx);
-	return (0);
+	if (argc >= 2)
+	{
+		if (map_checker(argv[1], &asd) == 0)
+		{
+			map = map_lines(argv[1]);
+			width = ft_strlen(map[0]);
+			height = ft_strlen2(map);
+			parser(map, width, height, asd);
+		}
+	}
+	else
+	{
+		write(2, "error", 5);
+		exit(1);
+	}
 }
