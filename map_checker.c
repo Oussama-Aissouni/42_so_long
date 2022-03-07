@@ -13,7 +13,7 @@
 
 static	void	map_error(void)
 {
-	write(2, "error with the map", 18);
+	write(2, "error\n", 6);
 	exit(1);
 }
 
@@ -33,16 +33,20 @@ static	int	check_lines_lenght(char **p)
 	return (0);
 }
 
+void	init(t_components *comp)
+{
+	comp->c = 0;
+	comp->e = 0;
+	comp->p = 0;
+}
+
 static	void	check_components(char **mp, t_components *comp, t_window *asd)
 {
 	size_t		i;
 	size_t		j;
 
 	i = 1;
-	asd->coins_count = 0;
-	comp->c = 0;
-	comp->e = 0;
-	comp->p = 0;
+	init(comp);
 	while (i < ft_strlen2(mp) - 1)
 	{
 		j = 1;

@@ -35,16 +35,24 @@ typedef struct s_texture
 	void	*img;
 }	t_texture;
 
+typedef struct s_exit
+{
+	void	*img;
+	int		pos_i;
+	int		pos_j;
+}	t_exit;
+
 typedef struct s_window
 {
 	int			coins_count;
+	char		**map;
 	void		*mlx;
 	void		*win;
 	t_player	p;
 	t_texture	c;
 	t_texture	g;
 	t_texture	w;
-	t_texture	e;
+	t_exit		e;
 }	t_window;
 
 typedef struct s_components
@@ -68,4 +76,9 @@ int		check_top_bot(char *line);
 int		check_mid_border(char *line);
 void	parser(char **map, int width, int height, t_window asd);
 int		map_checker(const char *path, t_window *asd);
+void	put_player_image(t_window *vars, int i, int j);
+void	put_exit_image(t_window *vars, int i, int j);
+void	put_collectible_image(t_window *vars, int i, int j);
+void	put_ground_image(t_window *vars, int i, int j);
+void	put_wall_image(t_window *vars, int i, int j);
 #endif

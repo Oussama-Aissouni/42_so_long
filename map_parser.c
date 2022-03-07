@@ -24,40 +24,15 @@ static	void	map_reading(t_window *vars, char	**map)
 		while (map[i][j])
 		{
 			if (map[i][j] == '1')
-			{
-				mlx_put_image_to_window(vars->mlx, vars->win, vars->w.img,
-					j * 80, i * 80);
-			}
+				put_wall_image(vars, i, j);
 			else if (map[i][j] == '0')
-			{
-				mlx_put_image_to_window(vars->mlx, vars->win, vars->g.img,
-					j * 80, i * 80);
-			}
+				put_ground_image(vars, i, j);
 			else if (map[i][j] == 'P')
-			{
-				vars->p.pos_j = j;
-				vars->p.pos_i = i;
-				vars->p.pos_x = j * 80;
-				vars->p.pos_y = i * 80;
-				mlx_put_image_to_window(vars->mlx, vars->win, vars->g.img,
-					j * 80, i * 80);
-				mlx_put_image_to_window(vars->mlx, vars->win, vars->p.img,
-					j * 80, i * 80);
-			}
+				put_player_image(vars, i, j);
 			else if (map[i][j] == 'C')
-			{
-				mlx_put_image_to_window(vars->mlx, vars->win, vars->g.img,
-					j * 80, i * 80);
-				mlx_put_image_to_window(vars->mlx, vars->win, vars->c.img,
-					j * 80, i * 80);
-			}
+				put_collectible_image(vars, i, j);
 			else if (map[i][j] == 'E')
-			{
-				mlx_put_image_to_window(vars->mlx, vars->win, vars->g.img,
-					j * 80, i * 80);
-				mlx_put_image_to_window(vars->mlx, vars->win, vars->e.img,
-					j * 80, i * 80);
-			}
+				put_exit_image(vars, i, j);
 			j++;
 		}
 		i++;
@@ -66,8 +41,9 @@ static	void	map_reading(t_window *vars, char	**map)
 
 void	parser(char **map, int width, int height, t_window	vars)
 {
-	int			x;
+	int	x;
 
+	vars.map = map;
 	vars.mlx = mlx_init();
 	vars.win = mlx_new_window(vars.mlx, width * 80, height * 80, "So_long");
 	vars.p.img = mlx_xpm_file_to_image(vars.mlx,

@@ -14,10 +14,10 @@
 
 int	main(int argc, char *argv[])
 {
-	char	**map;
-	int		width;
-	int		height;
-	t_window asd;
+	char		**map;
+	int			width;
+	int			height;
+	t_window	asd;
 
 	if (argc >= 2)
 	{
