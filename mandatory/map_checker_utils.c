@@ -1,23 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   map_checker.c                                      :+:      :+:    :+:   */
+/*   map_checker_utils.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: oaissoun <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/02/19 19:26:38 by oaissoun          #+#    #+#             */
-/*   Updated: 2022/02/19 19:26:40 by oaissoun         ###   ########.fr       */
+/*   Created: 2022/03/08 11:13:46 by oaissoun          #+#    #+#             */
+/*   Updated: 2022/03/08 11:13:47 by oaissoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 #include "so_long.h"
 
-static	void	map_error(void)
+void	map_error(void)
 {
-	write(2, "error\n", 6);
+	write(2, "Error\nmap error", 15);
 	exit(1);
 }
 
-static	int	check_lines_lenght(char **p)
+int	check_lines_lenght(char **p)
 {
 	size_t	nb_lines;
 	size_t	i;
@@ -40,7 +41,7 @@ void	init(t_components *comp)
 	comp->p = 0;
 }
 
-static	void	check_components(char **mp, t_components *comp, t_window *asd)
+void	check_components(char **mp, t_components *comp, t_window *asd)
 {
 	size_t		i;
 	size_t		j;
@@ -68,30 +69,16 @@ static	void	check_components(char **mp, t_components *comp, t_window *asd)
 	asd->coins_count = comp->c;
 }
 
-int	map_checker(const char *path, t_window *asd)
+int	ft_strncmp(char *s1, const char *s2, size_t n)
 {
-	t_components	comp;
-	char			**mp;
-	size_t			i;
-	size_t			lenght;
+	size_t	i;
 
-	mp = map_lines(path);
-	i = 1;
-	lenght = ft_strlen2(mp) - 1;
-	if (check_lines_lenght(mp) != 0)
-		map_error();
-	if (check_top_bot(mp[0]) != 0)
-		map_error();
-	while (i < lenght)
+	i = 0;
+	while ((s1[i] != '\0' || s2[i] != '\0') && i < n)
 	{
-		if (check_mid_border(mp[i]) != 0)
-			map_error();
+		if (s1[i] != s2[i])
+			return ((unsigned char)s1[i] - (unsigned char)s2[i]);
 		i++;
 	}
-	if (check_top_bot(mp[lenght]) != 0)
-		map_error();
-	check_components(mp, &comp, asd);
-	if (comp.p != 1 || comp.e != 1 || comp.c == 0)
-		map_error();
 	return (0);
 }

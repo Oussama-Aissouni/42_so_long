@@ -23,18 +23,20 @@ size_t	ft_strlen2(char	**s)
 
 int	lines_counter(const char *path)
 {
-	int	indice;
-	int	fd;
+	int		indice;
+	int		fd;
+	char	*str;
 
 	fd = open(path, O_RDONLY);
 	indice = 0;
-	while (1)
+	str = get_next_line(fd);
+	while (str)
 	{
-		if (get_next_line(fd) == NULL)
-			break ;
-		else
-			indice++;
+		indice++;
+		free(str);
+		str = get_next_line(fd);
 	}
+	free(str);
 	close(fd);
 	return (indice);
 }
@@ -47,6 +49,8 @@ char	**map_lines(const char *path)
 	char	**map_lines;
 
 	fd = open(path, O_RDONLY);
+	if (fd < 0)
+		map_error();
 	counter = 0;
 	nb_line = lines_counter(path);
 	map_lines = (char **)malloc(sizeof(char *) * (nb_line + 1));
@@ -56,6 +60,8 @@ char	**map_lines(const char *path)
 		counter++;
 	}
 	map_lines[counter] = NULL;
+	if (ft_strlen2(map_lines) < 3)
+		map_error();
 	return (map_lines);
 }
 

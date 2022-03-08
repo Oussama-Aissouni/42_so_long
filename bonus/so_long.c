@@ -5,16 +5,15 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: oaissoun <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/02/17 14:35:02 by oaissoun          #+#    #+#             */
-/*   Updated: 2022/02/17 14:35:10 by oaissoun         ###   ########.fr       */
+/*   Created: 2022/03/08 18:09:02 by oaissoun          #+#    #+#             */
+/*   Updated: 2022/03/08 18:09:04 by oaissoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long.h"
+#include "so_long_bonus.h"
 
 int	main(int argc, char *argv[])
 {
-	char		**map;
 	int			width;
 	int			height;
 	t_window	asd;
@@ -23,15 +22,15 @@ int	main(int argc, char *argv[])
 	{
 		if (map_checker(argv[1], &asd) == 0)
 		{
-			map = map_lines(argv[1]);
-			width = ft_strlen(map[0]);
-			height = ft_strlen2(map);
-			parser(map, width, height, asd);
+			asd.map = map_lines(argv[1]);
+			width = ft_strlen(asd.map[0]);
+			height = ft_strlen2(asd.map);
+			parser(asd.map, width, height, asd);
 		}
 	}
 	else
 	{
-		write(2, "error", 5);
+		write(2, "Error\nno enough arguments", 25);
 		exit(1);
 	}
 }

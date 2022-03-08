@@ -44,10 +44,11 @@ typedef struct s_exit
 
 typedef struct s_window
 {
+	void		*win;
+	void		*mlx;
 	int			coins_count;
 	char		**map;
-	void		*mlx;
-	void		*win;
+	int			moves;
 	t_player	p;
 	t_texture	c;
 	t_texture	g;
@@ -81,4 +82,9 @@ void	put_exit_image(t_window *vars, int i, int j);
 void	put_collectible_image(t_window *vars, int i, int j);
 void	put_ground_image(t_window *vars, int i, int j);
 void	put_wall_image(t_window *vars, int i, int j);
+void	map_error(void);
+int		check_lines_lenght(char **p);
+void	init(t_components *comp);
+void	check_components(char **mp, t_components *comp, t_window *asd);
+int		ft_strncmp(char *s1, const char *s2, size_t n);
 #endif

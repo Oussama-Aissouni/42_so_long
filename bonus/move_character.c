@@ -5,23 +5,26 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: oaissoun <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/02/19 15:41:14 by oaissoun          #+#    #+#             */
-/*   Updated: 2022/02/19 15:41:20 by oaissoun         ###   ########.fr       */
+/*   Created: 2022/03/08 18:08:54 by oaissoun          #+#    #+#             */
+/*   Updated: 2022/03/08 18:08:55 by oaissoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include "so_long.h"
+
+#include "so_long_bonus.h"
 
 void	move_right(t_window *vars, char	**map)
 {
 	if (map[vars->p.pos_i][vars->p.pos_j + 1] != '1'
 		&& map[vars->p.pos_i][vars->p.pos_j + 1] != 'E')
 	{
+		vars->moves += 1;
 		vars->p.pos_j += 1;
 		mlx_put_image_to_window(vars->mlx, vars->win, vars->g.img,
 			vars->p.pos_x, vars->p.pos_y);
 		vars->p.pos_x += 80;
 		mlx_put_image_to_window(vars->mlx, vars->win, vars->p.img,
 			vars->p.pos_x, vars->p.pos_y);
+		printf("moves : %d\n", vars->moves);
 	}
 	if (map[vars->p.pos_i][vars->p.pos_j] == 'C')
 	{
@@ -29,6 +32,8 @@ void	move_right(t_window *vars, char	**map)
 		map[vars->p.pos_i][vars->p.pos_j] = '0';
 	}
 	if (map[vars->p.pos_i][vars->p.pos_j] == 'O')
+		exit(0);
+	if (map[vars->p.pos_i][vars->p.pos_j] == 'X')
 		exit(0);
 }
 
@@ -37,12 +42,14 @@ void	move_left(t_window *vars, char	**map)
 	if (map[vars->p.pos_i][vars->p.pos_j - 1] != '1'
 		&& map[vars->p.pos_i][vars->p.pos_j - 1] != 'E')
 	{
+		vars->moves += 1;
 		vars->p.pos_x -= 80;
 		vars->p.pos_j -= 1;
 		mlx_put_image_to_window(vars->mlx, vars->win, vars->g.img,
 			vars->p.pos_x + 80, vars->p.pos_y);
 		mlx_put_image_to_window(vars->mlx, vars->win, vars->p.img,
 			vars->p.pos_x, vars->p.pos_y);
+		printf("moves : %d\n", vars->moves);
 	}
 	if (map[vars->p.pos_i][vars->p.pos_j] == 'C')
 	{
@@ -50,6 +57,8 @@ void	move_left(t_window *vars, char	**map)
 		map[vars->p.pos_i][vars->p.pos_j] = '0';
 	}
 	if (map[vars->p.pos_i][vars->p.pos_j] == 'O')
+		exit(0);
+	if (map[vars->p.pos_i][vars->p.pos_j] == 'X')
 		exit(0);
 }
 
@@ -58,12 +67,14 @@ void	move_down(t_window *vars, char	**map)
 	if (map[vars->p.pos_i - 1][vars->p.pos_j] != '1'
 		&& map[vars->p.pos_i - 1][vars->p.pos_j] != 'E')
 	{
+		vars->moves += 1;
 		vars->p.pos_y -= 80;
 		vars->p.pos_i -= 1;
 		mlx_put_image_to_window(vars->mlx, vars->win, vars->g.img,
 			vars->p.pos_x, vars->p.pos_y + 80);
 		mlx_put_image_to_window(vars->mlx, vars->win, vars->p.img,
 			vars->p.pos_x, vars->p.pos_y);
+		printf("moves : %d\n", vars->moves);
 	}
 	if (map[vars->p.pos_i][vars->p.pos_j] == 'C')
 	{
@@ -72,6 +83,8 @@ void	move_down(t_window *vars, char	**map)
 	}
 	if (map[vars->p.pos_i][vars->p.pos_j] == 'O')
 		exit(0);
+	if (map[vars->p.pos_i][vars->p.pos_j] == 'X')
+		exit(0);
 }
 
 void	move_up(t_window *vars, char	**map)
@@ -79,12 +92,14 @@ void	move_up(t_window *vars, char	**map)
 	if (map[vars->p.pos_i + 1][vars->p.pos_j] != '1'
 		&& map[vars->p.pos_i + 1][vars->p.pos_j] != 'E')
 	{
+		vars->moves += 1;
 		vars->p.pos_y += 80;
 		vars->p.pos_i += 1;
 		mlx_put_image_to_window(vars->mlx, vars->win, vars->g.img,
 			vars->p.pos_x, vars->p.pos_y - 80);
 		mlx_put_image_to_window(vars->mlx, vars->win, vars->p.img,
 			vars->p.pos_x, vars->p.pos_y);
+		printf("moves : %d\n", vars->moves);
 	}
 	if (map[vars->p.pos_i][vars->p.pos_j] == 'C')
 	{
@@ -92,6 +107,8 @@ void	move_up(t_window *vars, char	**map)
 		map[vars->p.pos_i][vars->p.pos_j] = '0';
 	}
 	if (map[vars->p.pos_i][vars->p.pos_j] == 'O')
+		exit(0);
+	if (map[vars->p.pos_i][vars->p.pos_j] == 'X')
 		exit(0);
 }
 
