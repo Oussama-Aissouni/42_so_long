@@ -9,10 +9,10 @@ all : $(NAME)
 	
 $(NAME) :
 	@$(CC) $(CFLAGS) $(MLXFLAGS) $(CFILES) -o $(NAME)
+
 clean :
 	@rm $(NAME)
 
 fclean : clean
 
-re : 
-	clean all
+re : clean all
