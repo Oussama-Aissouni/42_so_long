@@ -75,7 +75,7 @@ int		lines_counter(const char *path);
 char	**map_lines(const char *path);
 int		check_top_bot(char *line);
 int		check_mid_border(char *line);
-void	parser(char **map, int width, int height, t_window asd);
+void	parser(int width, int height, t_window	vars);
 int		map_checker(const char *path, t_window *asd);
 void	put_player_image(t_window *vars, int i, int j);
 void	put_exit_image(t_window *vars, int i, int j);
@@ -85,6 +85,6 @@ void	put_wall_image(t_window *vars, int i, int j);
 void	map_error(void);
 int		check_lines_lenght(char **p);
 void	init(t_components *comp);
-void	check_components(char **mp, t_components *comp, t_window *asd);
+void	check_components(t_components *comp, t_window *asd);
 int		ft_strncmp(char *s1, const char *s2, size_t n);
 #endif

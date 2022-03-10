@@ -24,7 +24,7 @@ void	move_right(t_window *vars, char	**map)
 		vars->p.pos_x += 80;
 		mlx_put_image_to_window(vars->mlx, vars->win, vars->p.img,
 			vars->p.pos_x, vars->p.pos_y);
-		printf("moves : %d\n", vars->moves);
+		f(vars);
 	}
 	if (map[vars->p.pos_i][vars->p.pos_j] == 'C')
 	{
@@ -49,7 +49,7 @@ void	move_left(t_window *vars, char	**map)
 			vars->p.pos_x + 80, vars->p.pos_y);
 		mlx_put_image_to_window(vars->mlx, vars->win, vars->p.img,
 			vars->p.pos_x, vars->p.pos_y);
-		printf("moves : %d\n", vars->moves);
+		f(vars);
 	}
 	if (map[vars->p.pos_i][vars->p.pos_j] == 'C')
 	{
@@ -74,7 +74,7 @@ void	move_down(t_window *vars, char	**map)
 			vars->p.pos_x, vars->p.pos_y + 80);
 		mlx_put_image_to_window(vars->mlx, vars->win, vars->p.img,
 			vars->p.pos_x, vars->p.pos_y);
-		printf("moves : %d\n", vars->moves);
+		f(vars);
 	}
 	if (map[vars->p.pos_i][vars->p.pos_j] == 'C')
 	{
@@ -99,7 +99,7 @@ void	move_up(t_window *vars, char	**map)
 			vars->p.pos_x, vars->p.pos_y - 80);
 		mlx_put_image_to_window(vars->mlx, vars->win, vars->p.img,
 			vars->p.pos_x, vars->p.pos_y);
-		printf("moves : %d\n", vars->moves);
+		f(vars);
 	}
 	if (map[vars->p.pos_i][vars->p.pos_j] == 'C')
 	{
@@ -114,14 +114,10 @@ void	move_up(t_window *vars, char	**map)
 
 int	key_hooks(int keycode, t_window *vars)
 {
-	int	x;
-
 	if (vars->coins_count == 0)
 	{
-		vars->e.img = mlx_xpm_file_to_image(vars->mlx,
-				"./images/exit_opened.xpm", &x, &x);
-		mlx_put_image_to_window(vars->mlx, vars->win, vars->e.img,
-			vars->e.pos_j * 80, vars->e.pos_i * 80);
+		init2(vars);
+		mlx_loop_hook(vars->mlx, animation, vars);
 		vars->map[vars->e.pos_i][vars->e.pos_j] = 'O';
 	}
 	if (keycode == 53)

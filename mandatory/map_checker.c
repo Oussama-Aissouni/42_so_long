@@ -52,7 +52,7 @@ int	map_checker(const char *path, t_window *asd)
 	}
 	if (check_top_bot(asd->map[lenght]) != 0)
 		map_error();
-	check_components(asd->map, &comp, asd);
+	check_components(&comp, asd);
 	if (comp.p != 1 || comp.e != 1 || comp.c == 0)
 		map_error();
 	return (0);

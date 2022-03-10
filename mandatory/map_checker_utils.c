@@ -41,26 +41,27 @@ void	init(t_components *comp)
 	comp->p = 0;
 }
 
-void	check_components(char **mp, t_components *comp, t_window *asd)
+void	check_components(t_components *comp, t_window *asd)
 {
 	size_t		i;
 	size_t		j;
 
 	i = 1;
 	init(comp);
-	while (i < ft_strlen2(mp) - 1)
+	while (i < ft_strlen2(asd->map) - 1)
 	{
 		j = 1;
-		while (j < ft_strlen(mp[0]) - 1)
+		while (j < ft_strlen(asd->map[0]) - 1)
 		{
-			if (mp[i][j] != '0' && mp[i][j] != '1' && mp[i][j] != 'C'
-				&& mp[i][j] != 'E' && mp[i][j] != 'P')
+			if (asd->map[i][j] != '0' && asd->map[i][j] != '1'
+				&& asd->map[i][j] != 'C' && asd->map[i][j] != 'E'
+				&& asd->map[i][j] != 'P')
 				map_error();
-			if (mp[i][j] == 'C')
+			if (asd->map[i][j] == 'C')
 				comp->c += 1;
-			else if (mp[i][j] == 'E')
+			else if (asd->map[i][j] == 'E')
 				comp->e += 1;
-			else if (mp[i][j] == 'P')
+			else if (asd->map[i][j] == 'P')
 				comp->p += 1;
 			j++;
 		}

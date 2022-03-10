@@ -12,26 +12,26 @@
 
 #include "so_long.h"
 
-static	void	map_reading(t_window *vars, char	**map)
+static	void	map_reading(t_window *vars)
 {
 	int			i;
 	int			j;
 
 	i = 0;
-	while (map[i])
+	while (vars->map[i])
 	{
 		j = 0;
-		while (map[i][j])
+		while (vars->map[i][j])
 		{
-			if (map[i][j] == '1')
+			if (vars->map[i][j] == '1')
 				put_wall_image(vars, i, j);
-			else if (map[i][j] == '0')
+			else if (vars->map[i][j] == '0')
 				put_ground_image(vars, i, j);
-			else if (map[i][j] == 'P')
+			else if (vars->map[i][j] == 'P')
 				put_player_image(vars, i, j);
-			else if (map[i][j] == 'C')
+			else if (vars->map[i][j] == 'C')
 				put_collectible_image(vars, i, j);
-			else if (map[i][j] == 'E')
+			else if (vars->map[i][j] == 'E')
 				put_exit_image(vars, i, j);
 			j++;
 		}
@@ -44,12 +44,11 @@ static	int	close_(void)
 	exit(0);
 }
 
-void	parser(char **map, int width, int height, t_window	vars)
+void	parser(int width, int height, t_window	vars)
 {
 	int	x;
 
 	vars.moves = 0;
-	vars.map = map;
 	vars.mlx = mlx_init();
 	vars.win = mlx_new_window(vars.mlx, width * 80, height * 80, "So_long");
 	vars.p.img = mlx_xpm_file_to_image(vars.mlx,
@@ -62,7 +61,7 @@ void	parser(char **map, int width, int height, t_window	vars)
 			"./images/bomb.xpm", &x, &x);
 	vars.e.img = mlx_xpm_file_to_image(vars.mlx,
 			"./images/exit.xpm", &x, &x);
-	map_reading(&vars, vars.map);
+	map_reading(&vars);
 	mlx_key_hook(vars.win, key_hooks, &vars);
 	mlx_hook(vars.win, 17, 0, close_, NULL);
 	mlx_loop(vars.mlx);

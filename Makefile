@@ -7,10 +7,11 @@ CFILES = mandatory/so_long.c mandatory/move_character.c\
 	mandatory/map_parser.c mandatory/map_parser_utils.c\
 	mandatory/map_checker_utils.c
 CFILESBONUS = bonus/so_long.c bonus/move_character.c\
-	bonus/so_long_utils.c bonus/get_next_line.c \
+	bonus/so_long_utils.c bonus/get_next_line.c\
 	bonus/get_next_line_utils.c bonus/map_checker.c\
 	bonus/map_parser.c bonus/map_parser_utils.c\
-	bonus/map_checker_utils.c
+	bonus/map_checker_utils.c bonus/animation.c bonus/ft_itoa.c\
+
 NAME = so_long
 NAME_BONUS = so_long_bonus
 

@@ -22,10 +22,9 @@ int	main(int argc, char *argv[])
 	{
 		if (map_checker(argv[1], &asd) == 0)
 		{
-			asd.map = map_lines(argv[1]);
 			width = ft_strlen(asd.map[0]);
 			height = ft_strlen2(asd.map);
-			parser(asd.map, width, height, asd);
+			parser(width, height, asd);
 		}
 	}
 	else

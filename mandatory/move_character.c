@@ -11,10 +11,10 @@
 /* ************************************************************************** */
 #include "so_long.h"
 
-void	move_right(t_window *vars, char	**map)
+void	move_right(t_window *vars)
 {
-	if (map[vars->p.pos_i][vars->p.pos_j + 1] != '1'
-		&& map[vars->p.pos_i][vars->p.pos_j + 1] != 'E')
+	if (vars->map[vars->p.pos_i][vars->p.pos_j + 1] != '1'
+		&& vars->map[vars->p.pos_i][vars->p.pos_j + 1] != 'E')
 	{
 		vars->moves += 1;
 		vars->p.pos_j += 1;
@@ -25,19 +25,19 @@ void	move_right(t_window *vars, char	**map)
 			vars->p.pos_x, vars->p.pos_y);
 		printf("moves : %d\n", vars->moves);
 	}
-	if (map[vars->p.pos_i][vars->p.pos_j] == 'C')
+	if (vars->map[vars->p.pos_i][vars->p.pos_j] == 'C')
 	{
 		vars->coins_count--;
-		map[vars->p.pos_i][vars->p.pos_j] = '0';
+		vars->map[vars->p.pos_i][vars->p.pos_j] = '0';
 	}
-	if (map[vars->p.pos_i][vars->p.pos_j] == 'O')
+	if (vars->map[vars->p.pos_i][vars->p.pos_j] == 'O')
 		exit(0);
 }
 
-void	move_left(t_window *vars, char	**map)
+void	move_left(t_window *vars)
 {
-	if (map[vars->p.pos_i][vars->p.pos_j - 1] != '1'
-		&& map[vars->p.pos_i][vars->p.pos_j - 1] != 'E')
+	if (vars->map[vars->p.pos_i][vars->p.pos_j - 1] != '1'
+		&& vars->map[vars->p.pos_i][vars->p.pos_j - 1] != 'E')
 	{
 		vars->moves += 1;
 		vars->p.pos_x -= 80;
@@ -48,19 +48,19 @@ void	move_left(t_window *vars, char	**map)
 			vars->p.pos_x, vars->p.pos_y);
 		printf("moves : %d\n", vars->moves);
 	}
-	if (map[vars->p.pos_i][vars->p.pos_j] == 'C')
+	if (vars->map[vars->p.pos_i][vars->p.pos_j] == 'C')
 	{
 		vars->coins_count--;
-		map[vars->p.pos_i][vars->p.pos_j] = '0';
+		vars->map[vars->p.pos_i][vars->p.pos_j] = '0';
 	}
-	if (map[vars->p.pos_i][vars->p.pos_j] == 'O')
+	if (vars->map[vars->p.pos_i][vars->p.pos_j] == 'O')
 		exit(0);
 }
 
-void	move_down(t_window *vars, char	**map)
+void	move_down(t_window *vars)
 {
-	if (map[vars->p.pos_i - 1][vars->p.pos_j] != '1'
-		&& map[vars->p.pos_i - 1][vars->p.pos_j] != 'E')
+	if (vars->map[vars->p.pos_i - 1][vars->p.pos_j] != '1'
+		&& vars->map[vars->p.pos_i - 1][vars->p.pos_j] != 'E')
 	{
 		vars->moves += 1;
 		vars->p.pos_y -= 80;
@@ -71,19 +71,19 @@ void	move_down(t_window *vars, char	**map)
 			vars->p.pos_x, vars->p.pos_y);
 		printf("moves : %d\n", vars->moves);
 	}
-	if (map[vars->p.pos_i][vars->p.pos_j] == 'C')
+	if (vars->map[vars->p.pos_i][vars->p.pos_j] == 'C')
 	{
 		vars->coins_count--;
-		map[vars->p.pos_i][vars->p.pos_j] = '0';
+		vars->map[vars->p.pos_i][vars->p.pos_j] = '0';
 	}
-	if (map[vars->p.pos_i][vars->p.pos_j] == 'O')
+	if (vars->map[vars->p.pos_i][vars->p.pos_j] == 'O')
 		exit(0);
 }
 
-void	move_up(t_window *vars, char	**map)
+void	move_up(t_window *vars)
 {
-	if (map[vars->p.pos_i + 1][vars->p.pos_j] != '1'
-		&& map[vars->p.pos_i + 1][vars->p.pos_j] != 'E')
+	if (vars->map[vars->p.pos_i + 1][vars->p.pos_j] != '1'
+		&& vars->map[vars->p.pos_i + 1][vars->p.pos_j] != 'E')
 	{
 		vars->moves += 1;
 		vars->p.pos_y += 80;
@@ -94,12 +94,12 @@ void	move_up(t_window *vars, char	**map)
 			vars->p.pos_x, vars->p.pos_y);
 		printf("moves : %d\n", vars->moves);
 	}
-	if (map[vars->p.pos_i][vars->p.pos_j] == 'C')
+	if (vars->map[vars->p.pos_i][vars->p.pos_j] == 'C')
 	{
 		vars->coins_count--;
-		map[vars->p.pos_i][vars->p.pos_j] = '0';
+		vars->map[vars->p.pos_i][vars->p.pos_j] = '0';
 	}
-	if (map[vars->p.pos_i][vars->p.pos_j] == 'O')
+	if (vars->map[vars->p.pos_i][vars->p.pos_j] == 'O')
 		exit(0);
 }
 
@@ -118,12 +118,12 @@ int	key_hooks(int keycode, t_window *vars)
 	if (keycode == 53)
 		exit(0);
 	else if (keycode == 2)
-		move_right(vars, vars->map);
+		move_right(vars);
 	else if (keycode == 0)
-		move_left(vars, vars->map);
+		move_left(vars);
 	else if (keycode == 1)
-		move_up(vars, vars->map);
+		move_up(vars);
 	else if (keycode == 13)
-		move_down(vars, vars->map);
+		move_down(vars);
 	return (0);
 }
