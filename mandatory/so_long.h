@@ -14,10 +14,9 @@
 # define SO_LONG_H
 # define BUFFER_SIZE 10000
 
-# include <stdio.h>
 # include <unistd.h>
+# include <stdarg.h>
 # include <stdlib.h>
-# include <stdbool.h>
 # include <fcntl.h>
 # include <mlx.h>
 
@@ -87,4 +86,5 @@ int		check_lines_lenght(char **p);
 void	init(t_components *comp);
 void	check_components(t_components *comp, t_window *asd);
 int		ft_strncmp(char *s1, const char *s2, size_t n);
+int		ft_printf(const char *format, ...);
 #endif

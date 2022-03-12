@@ -23,7 +23,7 @@ void	move_right(t_window *vars)
 		vars->p.pos_x += 80;
 		mlx_put_image_to_window(vars->mlx, vars->win, vars->p.img,
 			vars->p.pos_x, vars->p.pos_y);
-		printf("moves : %d\n", vars->moves);
+		ft_printf("moves : %d\n", vars->moves);
 	}
 	if (vars->map[vars->p.pos_i][vars->p.pos_j] == 'C')
 	{
@@ -46,7 +46,7 @@ void	move_left(t_window *vars)
 			vars->p.pos_x + 80, vars->p.pos_y);
 		mlx_put_image_to_window(vars->mlx, vars->win, vars->p.img,
 			vars->p.pos_x, vars->p.pos_y);
-		printf("moves : %d\n", vars->moves);
+		ft_printf("moves : %d\n", vars->moves);
 	}
 	if (vars->map[vars->p.pos_i][vars->p.pos_j] == 'C')
 	{
@@ -69,7 +69,7 @@ void	move_down(t_window *vars)
 			vars->p.pos_x, vars->p.pos_y + 80);
 		mlx_put_image_to_window(vars->mlx, vars->win, vars->p.img,
 			vars->p.pos_x, vars->p.pos_y);
-		printf("moves : %d\n", vars->moves);
+		ft_printf("moves : %d\n", vars->moves);
 	}
 	if (vars->map[vars->p.pos_i][vars->p.pos_j] == 'C')
 	{
@@ -92,7 +92,7 @@ void	move_up(t_window *vars)
 			vars->p.pos_x, vars->p.pos_y - 80);
 		mlx_put_image_to_window(vars->mlx, vars->win, vars->p.img,
 			vars->p.pos_x, vars->p.pos_y);
-		printf("moves : %d\n", vars->moves);
+		ft_printf("moves : %d\n", vars->moves);
 	}
 	if (vars->map[vars->p.pos_i][vars->p.pos_j] == 'C')
 	{
